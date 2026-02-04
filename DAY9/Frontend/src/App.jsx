@@ -7,14 +7,15 @@ function App() {
   const [editingId, setEditingId] = useState(null)
   const [editData, setEditData] = useState({ title: '', description: '' })
 
+  // Fetch all notes when page loads
   useEffect(() => {
     fetchNotes()
   }, [])
-  
+
   const fetchNotes = () => {
-    axios.get('http://localhost:3000/notes')
+    axios.get('/notes')
       .then(res => setNotes(res.data.notes))
-      .catch(err => console.error(err))
+      .catch(err => console.error("Fetch error:", err))
   }
 
   function handleSubmit(e) {
@@ -22,17 +23,18 @@ function App() {
     const title = e.target.title.value
     const description = e.target.description.value
 
-    axios.post('http://localhost:3000/notes', { title, description })
+    axios.post('/notes', { title, description })
       .then(() => {
         fetchNotes()
         e.target.reset()
       })
+      .catch(err => console.error("Create error:", err))
   }
 
   function handleDelete(id) {
-    axios.delete(`http://localhost:3000/notes/${id}`)
+    axios.delete(`/notes/${id}`)
       .then(() => fetchNotes())
-      .catch(err => console.error(err))
+      .catch(err => console.error("Delete error:", err))
   }
 
   function startEdit(note) {
@@ -41,13 +43,13 @@ function App() {
   }
 
   function saveEdit(id) {
-    axios.put(`http://localhost:3000/notes/${id}`, editData)
+    axios.put(`/notes/${id}`, editData)
       .then(() => {
-        setEditingId(null) // return to normal card
+        setEditingId(null)
         setEditData({ title: '', description: '' })
         fetchNotes()
       })
-      .catch(err => console.error(err))
+      .catch(err => console.error("Update error:", err))
   }
 
   return (
@@ -79,7 +81,6 @@ function App() {
                 <p>{note.description}</p>
                 <button type="button" onClick={() => startEdit(note)}>EDIT</button>
                 <button type="button" onClick={() => handleDelete(note._id)}>DELETE</button>
-                
               </>
             )}
           </div>
