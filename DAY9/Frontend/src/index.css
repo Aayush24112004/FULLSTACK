@@ -1,0 +1,160 @@
+/* RESET */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f4f6fb; /* soft bluish gray */
+  color: #2d3748; /* dark gray text */
+  line-height: 1.6;
+}
+
+/* NOTES GRID */
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+  justify-content: center;
+}
+
+/* NOTE CARD */
+.note {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  width: 260px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.note h2 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #1a202c;
+}
+
+.note p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-bottom: 12px;
+}
+
+/* CREATE NOTE FORM */
+.note-create-form {
+  max-width: 450px;
+  margin: 30px auto 10px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* INPUTS */
+.note-create-form input,
+.note-create-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d9e6;
+  background: #f8fafc;
+  color: #2d3748;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.note-create-form input:focus,
+.note-create-form textarea:focus {
+  border-color: #7c83fd;
+  box-shadow: 0 0 0 3px rgba(124,131,253,0.2);
+  background: #ffffff;
+}
+
+.note-create-form textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ADD BUTTON */
+.note-create-form button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #7c83fd, #5a67d8);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.note-create-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(90,103,216,0.25);
+}
+
+.note-create-form button:active {
+  transform: scale(0.97);
+}
+
+/* ACTION BUTTONS */
+.note button {
+  padding: 6px 10px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* EDIT */
+.note button:nth-of-type(1) {
+  background: #f6ad55;
+}
+
+.note button:nth-of-type(1):hover {
+  background: #dd6b20;
+  transform: translateY(-2px);
+}
+
+/* DELETE */
+.note button:nth-of-type(2) {
+  background: #fc8181;
+}
+
+.note button:nth-of-type(2):hover {
+  background: #e53e3e;
+  transform: translateY(-2px);
+}
+
+/* SAVE (edit mode) */
+.note input + textarea + button,
+.note textarea + button {
+  background: #48bb78;
+}
+
+.note input + textarea + button:hover,
+.note textarea + button:hover {
+  background: #38a169;
+  transform: translateY(-2px);
+}
